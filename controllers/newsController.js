@@ -42,3 +42,10 @@ exports.getSavedNews = (req, res, next) => {
     .then((result) => res.json(result))
     .catch((err) => err);
 };
+
+exports.deleteSavedNews = (req, res, next) => {
+  const articleId = req.params.articleId;
+  SavedNews.findByIdAndRemove(articleId)
+    .then((result) => res.json({ message: "deleted from saved news" }))
+    .catch((err) => console.log(err));
+};
